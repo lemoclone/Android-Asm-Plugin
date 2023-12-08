@@ -1,0 +1,13 @@
+build/
+.idea
+.gradle
+local.properties
+*.iml
+.gradle/
+
+*.project
+*.settings
+.classpath
+*/missingTranslate.txt
+/buildSrc/build/
+/buildSrc/.gradle/
