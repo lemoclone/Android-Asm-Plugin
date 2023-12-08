@@ -23,10 +23,14 @@ open class TimeCostClassVisitor(nextVisitor: ClassVisitor, private val className
                     if (isNeedVisiMethod(name)) {
                         mv.visitLdcInsn(name);
                         mv.visitLdcInsn(className)
+//                        mv.visitMethodInsn(
+//                            INVOKESTATIC, "com/example/gradletransformactiondemo/TimeCache", "putStartTime",
+//                            "(Ljava/lang/String;Ljava/lang/String;)V", false
+//                        )
                         mv.visitMethodInsn(
-                            INVOKESTATIC, "com/example/gradletransformactiondemo/TimeCache", "putStartTime",
+                            INVOKESTATIC, "com/example/gradletransformactiondemo/TimeCache", "checkDoubleClick",
                             "(Ljava/lang/String;Ljava/lang/String;)V", false
-                        );
+                        )
                     }
                     super.onMethodEnter();
                 }
@@ -37,10 +41,10 @@ open class TimeCostClassVisitor(nextVisitor: ClassVisitor, private val className
                     if (isNeedVisiMethod(name)) {
                         mv.visitLdcInsn(name);
                         mv.visitLdcInsn(className)
-                        mv.visitMethodInsn(
-                            INVOKESTATIC, "com/example/gradletransformactiondemo/TimeCache", "putEndTime",
-                            "(Ljava/lang/String;Ljava/lang/String;)V", false
-                        );
+//                        mv.visitMethodInsn(
+//                            INVOKESTATIC, "com/example/gradletransformactiondemo/TimeCache", "putEndTime",
+//                            "(Ljava/lang/String;Ljava/lang/String;)V", false
+//                        );
                     }
                     super.onMethodExit(opcode);
                 }
@@ -49,6 +53,9 @@ open class TimeCostClassVisitor(nextVisitor: ClassVisitor, private val className
     }
 
     private fun isNeedVisiMethod(name: String?):Boolean {
-        return name != "putStartTime" && name != "putEndTime" && name != "<clinit>" && name != "printlnTime" && name != "<init>"
+        val st = setOf("putStartTime", "putEndTime", "<clinit>", "printlnTime", "<init>","checkDoubleClick")
+//        return !st.contains(name)
+        return name == "showGreeting"
+//        return name != "putStartTime" && name != "putEndTime" && name != "<clinit>" && name != "printlnTime" && name != "<init>"
     }
 }

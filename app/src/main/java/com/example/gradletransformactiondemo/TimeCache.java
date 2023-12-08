@@ -8,6 +8,9 @@ public class TimeCache {
 
     public static Map<String, Long> mEndTimes = new HashMap<>();
 
+    private static long lastClickTime = 0L;
+
+
     public static void putStartTime(String methodName, String className) {
         mStartTimes.put(methodName + "," + className, System.currentTimeMillis());
     }
@@ -24,6 +27,15 @@ public class TimeCache {
         }
         long currTime = mEndTimes.get(key) - mStartTimes.get(key);
         System.out.println("className =" + className +" methodName =" + methodName + "，time consuming " + currTime + "  ms");
+    }
+
+    public static void checkDoubleClick(String methodName,String className) {
+        long passed = System.currentTimeMillis() - lastClickTime;
+        if (passed < 1000) {
+            System.out.println("double click, time passed = " + passed);
+            return ;
+        }
+        lastClickTime = System.currentTimeMillis();
     }
 }
 
