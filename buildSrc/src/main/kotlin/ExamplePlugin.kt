@@ -38,7 +38,8 @@ abstract class ExamplePlugin : Plugin<Project> {
             classContext: ClassContext,
             nextClassVisitor: ClassVisitor
         ): ClassVisitor {
-            return TimeCostClassVisitor(nextClassVisitor, classContext.currentClassData.className)
+//            return TimeCostClassVisitor(nextClassVisitor, classContext.currentClassData.className)
+            return InstrumentExceptionClassVisitor(nextClassVisitor, classContext.currentClassData.className)
 //            return if (parameters.get().writeToStdout.get()) {
 //                TraceClassVisitor(nextClassVisitor, PrintWriter(System.out))
 //            } else {

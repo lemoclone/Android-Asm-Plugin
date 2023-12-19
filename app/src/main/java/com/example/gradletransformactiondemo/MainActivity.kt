@@ -32,12 +32,23 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        val b = 3 / 0
+    }
 
+    fun runCatch() {
+        try {
+           val c = 4
+           val d = c * 2 - 8
+           val e = c / d
+        } catch (e: Exception) {
+            println(e.toString())
+        }
     }
 }
 
 fun showGreeting(ctx: Context) {
     println("Hello World")
+    val t = 1/0
     Toast.makeText(ctx, "Hello world", Toast.LENGTH_SHORT).show()
 }
 

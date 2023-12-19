@@ -54,8 +54,6 @@ open class TimeCostClassVisitor(nextVisitor: ClassVisitor, private val className
 
     private fun isNeedVisiMethod(name: String?):Boolean {
         val st = setOf("putStartTime", "putEndTime", "<clinit>", "printlnTime", "<init>","checkDoubleClick")
-//        return !st.contains(name)
         return name == "showGreeting"
-//        return name != "putStartTime" && name != "putEndTime" && name != "<clinit>" && name != "printlnTime" && name != "<init>"
     }
 }
